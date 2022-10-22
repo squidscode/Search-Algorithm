@@ -77,7 +77,7 @@ The ```config.json``` file looks like this:
 
 ```keyword_name``` -- describes the name of the keywords (ie. what the algorithm is **searching for**). The value will show up in the header of the table.
 
-```data_file``` -- the location of the json dataset (you should create these using the **Configurable Web Crawler** program).
+```data_file_path``` -- the location of the json dataset (you should create these using the **Configurable Web Crawler** program).
 
 ```verbose``` -- if true, shows the word-to-weight mapping in the terminal output.
 
