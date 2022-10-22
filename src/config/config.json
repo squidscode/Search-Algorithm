@@ -1,0 +1,6 @@
+{"keyword_name": "TV Shows",
+ "data_file_path": "./data/tvshows.json", 
+ "verbose": false, 
+ "show_weights": false, 
+ "show_word_count": false,
+ "number_of_results": 20}

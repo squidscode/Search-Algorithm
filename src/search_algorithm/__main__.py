@@ -4,15 +4,16 @@ import json
 import math
 import matplotlib.pyplot as plt
 import numpy as np
+from tabulate import tabulate
 
 config = {}
 
 if __name__ == "__main__":
-    with open("./config/search_config.json", "r") as read_file:
+    with open("./config/config.json", "r") as read_file:
         config = json.load(read_file)
 
     word_dictionary = {}
-    with open("./data/tvshows(15).json", "r") as read_file:
+    with open(config["data_file_path"], "r") as read_file:
         word_dictionary = json.load(read_file)
 
     search = input("Type your search query (separate words by commas or spaces): ")
@@ -28,7 +29,7 @@ if __name__ == "__main__":
         mean = 0
         size = len(word_dictionary["word_map"][word])
         for series in word_dictionary["word_map"][word]:
-            # weight = float(word_dictionary["word_map"][word][series]**0.5)/(word_dictionary["series_count"][series])
+            # f(n) = (n^{0.5}) * (10 / (m + 3)^{0.5})
             weight = float(word_dictionary["word_map"][word][series]**0.5) * (10 / math.pow(size + 3, 0.5))
             mean += weight / size
             if series in series_weight_dictionary:
@@ -43,23 +44,20 @@ if __name__ == "__main__":
                 weight = -word_means[word]
                 series_weight_dictionary[series] = series_weight_dictionary[series] + weight
 
-    # print(word_means)
+    if config["verbose"]: print(word_means)
     list_of_series = sorted(series_weight_dictionary.items(), key=lambda kv: (kv[1], kv[0]))
     list_of_series.reverse()
     
     data_x = []
     data_y = []
-    count = 0
-    for i in range(1, len(list_of_series) + 1, 1):
-        if count >= 20: break
-        print(f"{i}. {list_of_series[i - 1][0]}, weight: {list_of_series[i - 1][1]}, count: {word_dictionary['series_count'][list_of_series[i - 1][0]]}.")
-        data_x.append(list_of_series[i - 1][0])
-        data_y.append(list_of_series[i - 1][1])
-        count += 1
+    headers_arr = ["#", config["keyword_name"]]
+    if config["show_weights"]: headers_arr.append("Total Weight")
+    if config["show_word_count"]: headers_arr.append("Count")
 
-    # plt.tick_params("x", rotation=90)
-    # plt.subplots_adjust(bottom=0.465)
+    arr = []
+    for i in range(1, min(config["number_of_results"] + 1, len(list_of_series)), 1):
+        arr.append([i, list_of_series[i - 1][0]])
+        if config["show_weights"]: arr[i - 1].append(list_of_series[i - 1][1])
+        if config["show_word_count"]: arr[i - 1].append(word_dictionary['series_count'][list_of_series[i - 1][0]])
 
-    # plt.bar(range(len(data_x)), data_y, align="center")
-    # plt.xticks(range(len(data_x)), data_x)
-    # plt.show()
+    print(tabulate(arr, headers=headers_arr))
