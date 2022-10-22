@@ -62,7 +62,6 @@ Type your search query (separate words by commas or spaces): new york, central p
  20  Suburgatory                         -2.78795      697
 
 ```
-<br>
 
 ## The Config File
 
@@ -126,7 +125,6 @@ Type your search query (separate words by commas or spaces): sandbox, 3D, blocks
  19  Thief
  20  The Sims
 ```
-<br>
 
 ## How it works
 
