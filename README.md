@@ -7,7 +7,7 @@ To run the program, run the following command in the ```src``` directory: ```pyt
 
 **Here's an example of the program working:**
 ```
-MacBook-Pro-4:src Siddhant$ python3 -m search_algorithm
+$ python3 -m search_algorithm
 Type your search query (separate words by commas or spaces): new york, central perk
   #  TV Shows
 ---  ----------------------------
@@ -35,7 +35,7 @@ Type your search query (separate words by commas or spaces): new york, central p
 
 **Verbose output for the query above:**
 ```
-MacBook-Pro-4:src Siddhant$ python3 -m search_algorithm
+$ python3 -m search_algorithm
 Type your search query (separate words by commas or spaces): new york, central perk
 {'york': 0.38769689985092737, 'central': 0.5309173340848249, 'perk': 4.138605412657321}
   #  TV Shows                        Total Weight    Count
@@ -100,7 +100,7 @@ For example, if you wanted to search for video games, your ```config.json``` fil
 
 Here's the program being run with the configurations above:
 ```
-MacBook-Pro-4:src Siddhant$ python3 -m search_algorithm
+$ python3 -m search_algorithm
 Type your search query (separate words by commas or spaces): sandbox, 3D, blocks  
   #  Video Games
 ---  ---------------------
